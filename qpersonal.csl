@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="de-DE">
   <info>
-    <title>Juristische Schulung (Deutsch)</title>
-    <title-short>JuS</title-short>
-    <id>http://www.zotero.org/styles/juristische-schulung</id>
-    <link href="http://www.zotero.org/styles/juristische-schulung" rel="self"/>
-    <link href="http://www.zotero.org/styles/neue-juristische-wochenschrift" rel="template"/>
-    <link href="http://rsw.beck.de/rsw/upload/JuS/jusautorenhinweise.pdf" rel="documentation"/>
+    <title>Quintus’ persönlicher Zitierstil</title>
+    <title-short>QPersonal</title-short>
+    <id>http://mg.guelker.eu/styles/qpersonal</id>
+    <link href="http://mg.guelker.eu/styles/qpersonal" rel="self"/>
+    <link href="https://github.com/citation-style-language/styles/blob/e22b8a566bad9b4c7f52720f60dd875057a5d210/juristische-schulung.csl" rel="template"/>
     <author>
         <name>Reto Mantz</name>
         <name>Marvin Gülker</name>
