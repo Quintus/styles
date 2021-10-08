@@ -1,0 +1,84 @@
+/* CSS style sheet for use in exporting from org(-cite)
+ * with the qpersonal style.
+ */
+
+/***************************************
+ * Allgemeines
+ ***************************************/
+
+body {
+    text-align: justify;
+    hyphens: auto;
+}
+
+
+h2, h3, h4, h5, h6 {
+    text-align: left;
+}
+
+a:hover {
+    color: maroon;
+}
+
+/***************************************
+ * Juristische Überschriftennummerierung
+ ***************************************/
+
+body {
+    counter-reset: h1counter;
+}
+h2:not(.unnumbered) {
+    counter-increment: h1counter;
+    counter-reset: h2counter;
+}
+h2:not(.unnumbered)::before {
+    content: counter(h1counter, upper-roman) ". ";
+}
+h3 {
+    counter-increment: h2counter;
+    counter-reset: h3counter;
+}
+h3::before {
+    content: counter(h2counter) ". "
+}
+h4 {
+    counter-increment: h3counter;
+    counter-reset: h4counter;
+}
+h4::before {
+    content: counter(h3counter, lower-alpha) ") ";
+}
+h5 {
+    counter-increment: h4counter;
+}
+h5::before {
+    content: counter(h4counter, lower-greek) ") ";
+}
+
+h2.unnumbered {
+    counter-reset: h1counter;
+}
+
+#table-of-contents ul {
+    margin: 0px;
+}
+
+#table-of-contents ul a {
+    text-decoration: none;
+}
+
+#table-of-contents > div > ul {
+    list-style-type: upper-roman;
+}
+
+#table-of-contents > div > ul > li > ul {
+    list-style-type: decimal;
+}
+
+#table-of-contents > div > ul > li > ul > li > ul {
+    list-style-type: lower-alpha;
+}
+
+#table-of-contents > div > ul > li > ul > li > ul > li > ul {
+    list-style-type: lower-greek;
+}
