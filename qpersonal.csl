@@ -62,6 +62,17 @@
       </else>
     </choose>
   </macro>
+  <macro name="authority-or-author">
+      <!-- Often, 'author' is used in place of 'authority'. Support both, giving priority to the more precise 'authority'. -->
+      <choose>
+          <if variable="authority">
+              <text variable="authority"/>
+          </if>
+          <else>
+              <names variable="author"/>
+          </else>
+      </choose>
+  </macro>
   <macro name="locator-with-label">
     <group delimiter=" ">
       <label variable="locator" form="symbol"/>
@@ -210,29 +221,42 @@
         </else-if>
         <!-- Legal case
         Style:
-        if case is published in journal:  <court> <journal> <journal-year>, <first-page>, <locator> [ <en-dash> <case name>]
+        if case is published in journal:  <court>, <journal> <journal-year>, <first-page> (locator) [ <en-dash> <case name>]
+        if case is in official journal:   <OJ> <volume>, <first-page> (locator)
         otherwise:                        <court>, <type of decision> v. <dated-decided> <en-dash> <docketnumber> [ <en-dash> <case name>]   (type of decision is saved in field "note")
         -->
         <else-if type="legal_case" match="any">
           <choose>
             <!-- is the case published in a journal? -->
             <if variable="container-title">
-              <text variable="authority" suffix=" "/>
-              <text variable="container-title" form="short" suffix=" "/>
-              <text variable="volume" suffix=", "/>
+                <!-- Is it in the official journal? Those are cited by volume. -->
+                <choose>
+                    <if variable="volume">
+                        <text variable="container-title" form="short" suffix=" "/>
+                        <number variable="volume" form="numeric" suffix=", "/>
+                    </if>
+                    <else>
+                        <text macro="authority-or-author" suffix=" "/>
+                        <text macro="journalname-year"/>
+                    </else>
+                </choose>
               <text macro="firstpage-locator"/>
             </if>
             <else>
-              <text variable="authority" suffix=", "/>
+              <text macro="authority-or-author" suffix=", "/>
               <text variable="genre" suffix=" v. "/>
-              <date form="numeric" variable="issued" suffix=" &#8211; "/>
+              <date form="numeric" variable="event-date" suffix=" &#8211; "/>
               <text variable="number"/>
             </else>
           </choose>
           <choose>
-            <if variable="title-short">
-              <text variable="title-short" prefix=" &#8211; "/>
-            </if>
+              <!-- Names for legal cases may be set as shorttitle or title. Support both, preferring title as a shorttitle without title is illogical. -->
+              <if variable="title">
+                  <text variable="title" prefix=" &#8211; "/>
+              </if>
+              <else-if variable="title-short">
+                  <text variable="title-short" prefix=" &#8211; "/>
+              </else-if>
           </choose>
         </else-if>
         <else-if type="webpage">
