@@ -236,7 +236,7 @@
                         <number variable="volume" form="numeric" suffix=", "/>
                     </if>
                     <else>
-                        <text macro="authority-or-author" suffix=" "/>
+                        <text macro="authority-or-author" suffix=", "/>
                         <text macro="journalname-year"/>
                     </else>
                 </choose>
