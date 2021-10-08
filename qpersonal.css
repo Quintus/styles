@@ -50,13 +50,42 @@ h4::before {
 }
 h5 {
     counter-increment: h4counter;
+    counter-reset: h5counter;
 }
 h5::before {
-    content: counter(h4counter, lower-greek) ") ";
+    content: counter(h4counter, lower-alpha) counter(h4counter, lower-alpha) ") ";
+}
+
+h6 {
+    counter-increment: h5counter;
+}
+
+h6::before {
+    content: counter(h5counter, lower-greek) ") ";
 }
 
 h2.unnumbered {
     counter-reset: h1counter;
+}
+
+/***************************************
+ * ToC numbering
+ ***************************************/
+
+@counter-style double-lower-alpha-paren {
+    system: alphabetic;
+    suffix: ") ";
+    symbols: aa bb cc dd ee ff gg hh ii jj kk ll mm nn oo pp qq rr ss tt uu vv ww xx yy zz;
+}
+
+@counter-style lower-alpha-paren {
+    system: extends lower-alpha;
+    suffix: ") ";
+}
+
+@counter-style lower-greek-paren {
+    system: extends lower-greek;
+    suffix: ") ";
 }
 
 #table-of-contents ul {
@@ -76,9 +105,13 @@ h2.unnumbered {
 }
 
 #table-of-contents > div > ul > li > ul > li > ul {
-    list-style-type: lower-alpha;
+    list-style-type: lower-alpha-paren;
 }
 
 #table-of-contents > div > ul > li > ul > li > ul > li > ul {
-    list-style-type: lower-greek;
+    list-style: double-lower-alpha-paren;
+}
+
+#table-of-contents > div > ul > li > ul > li > ul > li > ul > li > ul{
+    list-style-type: lower-greek-paren;
 }
