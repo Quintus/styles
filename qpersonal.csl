@@ -84,7 +84,7 @@
   </macro>
   <macro name="journalname-year">
     <group delimiter=" ">
-      <text variable="container-title-short"/>
+      <text variable="container-title" form="short"/>
       <date date-parts="year" form="text" variable="issued"/>
     </group>
   </macro>
