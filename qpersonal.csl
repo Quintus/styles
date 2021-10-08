@@ -8,7 +8,8 @@
     <link href="http://www.zotero.org/styles/neue-juristische-wochenschrift" rel="template"/>
     <link href="http://rsw.beck.de/rsw/upload/JuS/jusautorenhinweise.pdf" rel="documentation"/>
     <author>
-      <name>Reto Mantz</name>
+        <name>Reto Mantz</name>
+        <name>Marvin Gülker</name>
     </author>
     <category citation-format="note"/>
     <category field="law"/>
@@ -23,11 +24,11 @@
     <updated>2014-12-09T13:38:27+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
-  <!-- set date to format 8. 8. 2014 -->
+  <!-- set date to format 8.8.2014 -->
   <locale xmlns="http://purl.org/net/xbiblio/csl" xml:lang="de-DE">
     <date form="numeric">
-      <date-part name="day" form="numeric" suffix=". "/>
-      <date-part name="month" form="numeric" suffix=". "/>
+      <date-part name="day" form="numeric" suffix="."/>
+      <date-part name="month" form="numeric" suffix="."/>
       <date-part name="year"/>
     </date>
   </locale>
