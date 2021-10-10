@@ -211,11 +211,21 @@
         <!-- Chapter
         Style: <author italic>, in: <book-author>, <title short>, [<edition>. Aufl.] <year>, <page> (<locator>)
         e.g.: Mantz in Spindler, Rechtliche Rahmenbedingungen von Open Access-Publikationen, 2006, 55 (57)
+
+        Fest- und Gedächtnisschriften besitzen überdies einen Kurztitel ("FS Geehrter",
+        "GS Geehrter". Dieser ist in Biblatex als "shorttitle" zu erfassen. Normalerweise
+        sollte das dann als short-Form des container-title verfügbar sein und wird hier
+        auch so verwendet, aber offenbar hat Pandoc hier einen Bug. Wegen dieses Bugs
+        taucht der shorttitle momentan gar nicht auf. Nach Behebung des Bugs sollte er
+        aber.
         -->
         <else-if type="chapter">
-          <text macro="autor-editor-note" suffix=", in: "/>
-          <text macro="author-chapter" suffix=", "/>
-          <text variable="container-title" suffix=", "/>
+            <text macro="author-note" suffix=", in: "/>
+            <names variable="editor" suffix=", ">
+                <name delimiter="/" name-as-sort-order="all" sort-separator=", " form="short"/>
+                <label form="short" prefix=" (" suffix=")"/>
+            </names>
+          <text variable="container-title" form="short" suffix=", "/>
           <text macro="edition"/>
           <text macro="firstpage-locator" prefix=", "/>
         </else-if>
