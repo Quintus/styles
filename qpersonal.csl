@@ -1,4 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  -- Mapping for biblatex entry types to CSL types, as used
+  -- by pandoc and citeproc.el:
+  --
+  -- | Biblatex Type  | CSL type          |
+  -- |----------------+-------------------|
+  -- | @article       | article           |
+  -- | @legal         | bill?             |
+  -- | @book          | book              |
+  -- | @incollection  | ?                 |
+  -- | @commentary    | ?                 |
+  -- | @legislation   | legislation?      |
+  -- | @inproceedings | paper-conference? |
+  -- | @report        | report?           |
+  -- | @online        | webpage           |
+  -- | @inbook        | chapter? entry?   |
+  -- | @jurisdiction  | legal_case        |
+  -- | @thesis        | thesis?           |
+  --
+  -- The table is work-in-progress.
+  -->
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="de-DE">
   <info>
     <title>Quintus’ persönlicher Zitierstil</title>
@@ -13,14 +34,14 @@
     <category citation-format="note"/>
     <category field="law"/>
     <issn>0022-6939</issn>
-    <summary>JuS
-    Style for articles in German law journal JuS
-    - based on style Neue Juristische Wochenschrift (NJW) http://www.zotero.org/styles/neue-juristische-wochenschrift
-    - Commentaries and handbooks should use publication type "entry-encyclopedia". See details for different citations below.
+    <summary>QPersonal
+    Personal style used by quintus for his legal draft writings, based
+    on the style for the JuS German law journal.
+    - Commentaries should use publication type "entry-encyclopedia". See details for different citations below.
     - If a book or entry-encyclopedia is cited for the 2nd time (or more), "title and edition" are substituted by (o. Fn. ...)
       (see footnote ...)
     - see more details below in the comments</summary>
-    <updated>2014-12-09T13:38:27+00:00</updated>
+    <updated>2021-10-10T07:55:14+02:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <!-- set date to format 8.8.2014 -->
