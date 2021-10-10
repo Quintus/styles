@@ -109,14 +109,13 @@
         <group delimiter=" ">
           <number vertical-align="baseline" suffix=" " variable="edition" form="ordinal"/>
           <text term="edition" form="short" suffix="."/>
-          <date date-parts="year" form="text" variable="issued" prefix=" (" suffix=")"/>
+          <date date-parts="year" form="text" variable="issued" prefix=" "/>
         </group>
       </if>
       <else-if variable="edition">
         <text variable="edition" form="short"/>
-        <date date-parts="year" form="text" variable="issued" prefix=" (" suffix=")"/>
+        <date date-parts="year" form="text" variable="issued" prefix=" "/>
       </else-if>
-      <!-- display year without brackets if this is the first edition (aka variable edition is not set) -->
       <else>
         <date date-parts="year" form="text" variable="issued" prefix=" "/>
       </else>
