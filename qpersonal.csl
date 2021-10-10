@@ -1,25 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  -- Mapping for biblatex entry types to CSL types, as used
-  -- by pandoc and citeproc.el:
-  --
-  -- | Biblatex Type  | CSL type          |
-  -- |----------------+-------------------|
-  -- | @article       | article           |
-  -- | @legal         | bill?             |
-  -- | @book          | book              |
-  -- | @incollection  | ?                 |
-  -- | @commentary    | ?                 |
-  -- | @legislation   | legislation?      |
-  -- | @inproceedings | paper-conference? |
-  -- | @report        | report?           |
-  -- | @online        | webpage           |
-  -- | @inbook        | chapter? entry?   |
-  -- | @jurisdiction  | legal_case        |
-  -- | @thesis        | thesis?           |
-  --
-  -- The table is work-in-progress.
-  -->
 <style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="de-DE">
   <info>
     <title>Quintus’ persönlicher Zitierstil</title>
