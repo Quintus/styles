@@ -229,6 +229,16 @@
           <text macro="edition"/>
           <text macro="firstpage-locator" prefix=", "/>
         </else-if>
+        <else-if type="paper-conference">
+            <text macro="author-note" suffix=", in: "/>
+            <names variable="editor" suffix=", ">
+                <name delimiter="/" name-as-sort-order="all" sort-separator=", " form="short"/>
+                <label form="short" prefix=" (" suffix=")"/>
+            </names>
+          <text variable="container-title" form="short" suffix=", "/>
+          <text macro="edition"/>
+          <text macro="firstpage-locator" prefix=", "/>
+        </else-if>
         <!-- Legal case
         Style:
         if case is published in journal:  <court>, <journal> <journal-year>, <first-page> (locator) [ <en-dash> <case name>]
