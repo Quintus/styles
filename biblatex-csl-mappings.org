@@ -1,0 +1,49 @@
+#+TITLE: Mappings of Biblatex types to CSL
+#+AUTHOR: quintus
+#+LANGUAGE: en
+
+The de-facto standard format for bibliographic databases is Bibtex,
+nowadays probably in the Biblatex variant. This database format
+defines a number of types, which map to the CSL entry types in
+[[https://docs.citationstyles.org/en/1.0.1/specification.html#appendix-iii-types][appendix III of the CSL 1.0.1 specification]]. How the mapping is done
+is subject to the used CSL processor’s choice, but from my experience
+the two most processors most popular among plain text users, Pandoc
+and Citeproc.el, appear to agree on the mappings. Their mappings are
+documented in this file. Probably the most popular CSL processor
+overall is Zotero, but since I do not use Zotero, I cannot comment on
+how far its mappings deviate from the ones documented here.
+
+The mapping list is focused on the types I need for my daily citation
+needs as a German jurist. The list has been gathered by a mix of trial
+and error and reading Pandoc’s source code in =Citeproc/BibTeX.hs=.
+
+* List of mappings
+
+| Biblatex Type  | CSL type                        |
+|----------------+---------------------------------|
+| @article       | article-journal (but see below) |
+| @legal         | bill?                           |
+| @book          | book                            |
+| @incollection  | chapter                         |
+| @commentary    | ?                               |
+| @legislation   | legislation?                    |
+| @inproceedings | paper-conference                |
+| @report        | report?                         |
+| @online        | webpage                         |
+| @inbook        | chapter                         |
+| @jurisdiction  | legal_case                      |
+| @thesis        | thesis?                         |
+
+Entries with a question mark have been guessed and not (yet) tested.
+
+** A note on @article
+
+It is possible to change the mapping by specifying the entry field
+=entrysubtype= ih the Biblatex database. The mappings are as follows:
+
+| entrysubtype      | CSL type          |
+|-------------------+-------------------|
+| magazine          | article-magazine  |
+| newspaper         | article-newspaper |
+| (everything else) | article-journal   |
+
