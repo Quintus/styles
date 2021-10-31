@@ -32,6 +32,8 @@
     </date>
     <terms>
         <term name="accessed">zuletzt aufgerufen am</term>
+        <!-- Override whatever the language default is -->
+        <term name="note" form="short">Rn.</term>
     </terms>
   </locale>
   <macro name="author">
@@ -238,6 +240,16 @@
           <text macro="edition"/>
           <text macro="firstpage-locator" prefix=", "/>
         </else-if>
+        <!-- Treat bill and legislation the same; citeproc.el
+             confusingly maps Biblatex's @legislation to CSL's "bill" -->
+        <else-if type="legislation">
+            <text variable="number"/>
+            <text variable="locator" prefix=", "/>
+        </else-if>
+        <else-if type="bill">
+            <text variable="number"/>
+            <text variable="locator" prefix=", "/>
+        </else-if>
         <!-- Legal case
         Style:
         if case is published in journal:  <court>, <journal> <journal-year>, <first-page> (locator) [ <en-dash> <case name>]
@@ -256,16 +268,29 @@
                     </if>
                     <else>
                         <text macro="authority-or-author" suffix=", "/>
-                        <text macro="journalname-year"/>
+                        <text macro="journalname-year" suffix=", "/>
                     </else>
                 </choose>
-              <text macro="firstpage-locator"/>
+                <text variable="page-first"/>
+                <choose>
+                    <if locator="page">
+                        <text variable="locator" prefix=" (" suffix=")"/>
+                    </if>
+                    <else>
+                        <label variable="locator" form="symbol" prefix=", " suffix=" "/>
+                        <text variable="locator"/>
+                    </else>
+                </choose>
             </if>
+            <!-- Unpublished case cannot be cited by page number, only
+                 by margin numbers -->
             <else>
               <text macro="authority-or-author" suffix=", "/>
-              <text variable="genre" suffix=" v. "/>
+              <text variable="note" suffix=" v. "/>
               <date form="numeric" variable="event-date" suffix=" &#8211; "/>
-              <text variable="number"/>
+              <text variable="number" suffix=", "/>
+              <label variable="locator" form="symbol" suffix=" "/>
+              <text variable="locator"/>
             </else>
           </choose>
           <choose>
