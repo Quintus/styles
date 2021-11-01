@@ -123,8 +123,8 @@
       </else>
     </choose>
   </macro>
-  <citation et-al-min="5" et-al-use-first="1">
-    <layout delimiter="; ">
+  <citation et-al-min="4" et-al-use-first="1">
+    <layout delimiter="; " suffix=".">
       <choose>
         <!-- Journal article
              Style: <authors italic>, <journalname short> <journal-year>, <first-page>, <locator/cited page(s)>    
