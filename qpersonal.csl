@@ -146,16 +146,16 @@
              Style: <authors italic>, <title short>, [<edition>. Aufl. ]<year>, <locator/cited page(s)>    
         -->
         <else-if type="book">
-          <text macro="autor-editor-note" suffix=", "/>
+          <text macro="autor-editor-note"/>
           <choose>
             <if match="none" position="first">
-              <group delimiter=" " prefix="(" suffix="), ">
+              <group delimiter=" " prefix=" (" suffix=")">
                 <text value="o. Fn."/>
                 <text variable="first-reference-note-number"/>
               </group>
             </if>
             <else>
-              <text variable="title" form="short" suffix=", "/>
+              <text variable="title" form="short" prefix=", " suffix=", "/>
               <text macro="edition"/>
             </else>
           </choose>
