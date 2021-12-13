@@ -286,7 +286,7 @@
                  by margin numbers -->
             <else>
               <text macro="authority-or-author" suffix=", "/>
-              <text variable="note" suffix=" v. "/>
+              <text variable="genre" suffix=" v. "/>
               <date form="numeric" variable="event-date" suffix=" &#8211; "/>
               <text variable="number" suffix=", "/>
               <label variable="locator" form="symbol" suffix=" "/>
