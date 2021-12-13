@@ -104,7 +104,7 @@
     </macro>
     <macro name="journalname-year">
         <group delimiter=" ">
-            <text variable="container-title" form="short"/>
+            <text variable="container-title" text-case="title" form="short"/>
             <date date-parts="year" form="text" variable="issued"/>
         </group>
     </macro>
@@ -145,7 +145,7 @@
                 </if>
                 <else-if type="article-newspaper">
                     <text macro="author-note" suffix=", "/>
-                    <text variable="container-title"/>
+                    <text variable="container-title" text-case="title"/>
                     <date form="numeric" variable="issued" prefix=" v. "/>
                     <text variable="URL" prefix=", "/>
                 </else-if>
@@ -162,7 +162,7 @@
                             </group>
                         </if>
                         <else>
-                            <text variable="title" form="short" prefix=", " suffix=", "/>
+                            <text variable="title" form="short" text-case="title" prefix=", " suffix=", "/>
                             <text macro="edition"/>
                         </else>
                     </choose>
@@ -192,7 +192,7 @@
                 <else-if type="entry-encyclopedia">
                     <choose>
                         <if variable="container-title">
-                            <text variable="container-title" suffix=", "/>
+                            <text variable="container-title" text-case="title" suffix=", "/>
                         </if>
                         <else>
                             <text macro="author-commentary" suffix=", "/>
@@ -204,7 +204,7 @@
                                     </group>
                                 </if>
                                 <else>
-                                    <text variable="title" suffix=", " form="short"/>
+                                    <text variable="title" text-case="title" suffix=", " form="short"/>
                                 </else>
                             </choose>
                         </else>
@@ -243,7 +243,7 @@ aber.
                                 <name delimiter="/" name-as-sort-order="all" sort-separator=", " form="short"/>
                                 <label form="short" prefix=" (" suffix=")"/>
                             </names>
-                            <text variable="container-title" form="short" suffix=", "/>
+                            <text variable="container-title" text-case="title" form="short" suffix=", "/>
                         </else>
                     </choose>
                     <text macro="edition"/>
@@ -255,7 +255,7 @@ aber.
                         <name delimiter="/" name-as-sort-order="all" sort-separator=", " form="short"/>
                         <label form="short" prefix=" (" suffix=")"/>
                     </names>
-                    <text variable="container-title" form="short" suffix=", "/>
+                    <text variable="container-title" text-case="title" form="short" suffix=", "/>
                     <text macro="edition"/>
                     <text macro="firstpage-locator" prefix=", "/>
                 </else-if>
@@ -282,7 +282,7 @@ aber.
                             <!-- Is it in the official journal? Those are cited by volume. -->
                             <choose>
                                 <if variable="volume">
-                                    <text variable="container-title" form="short" suffix=" "/>
+                                    <text variable="container-title" text-case="title" form="short" suffix=" "/>
                                     <number variable="volume" form="numeric" suffix=", "/>
                                 </if>
                                 <else>
@@ -315,10 +315,10 @@ aber.
                     <choose>
                         <!-- Names for legal cases may be set as shorttitle or title. Support both, preferring title as a shorttitle without title is illogical. -->
                         <if variable="title">
-                            <text variable="title" prefix=" &#8211; "/>
+                            <text variable="title" text-case="title" prefix=" &#8211; "/>
                         </if>
                         <else-if variable="title-short">
-                            <text variable="title-short" prefix=" &#8211; "/>
+                            <text variable="title-short" text-case="title" prefix=" &#8211; "/>
                         </else-if>
                     </choose>
                 </else-if>
@@ -333,7 +333,7 @@ aber.
                 <else>
                     <group delimiter=", ">
                         <text macro="author-note"/>
-                        <text variable="title"/>
+                        <text variable="title" text-case="title"/>
                         <text macro="locator-with-label"/>
                     </group>
                 </else>
@@ -350,31 +350,31 @@ aber.
                 <if type="article-journal">
                     <group delimiter=", ">
                         <text macro="author-note"/>
-                        <text variable="title"/>
+                        <text variable="title" text-case="title"/>
                         <text macro="journalname-year"/>
                         <text macro="firstpage-locator"/>
                     </group>
                 </if>
                 <else-if type="book">
                     <text macro="autor-editor-note" suffix=", "/>
-                    <text variable="title" form="short" suffix=", "/>
+                    <text variable="title" form="short" text-case="title" suffix=", "/>
                     <text macro="edition"/>
                 </else-if>
                 <else-if type="article-newspaper">
                     <text macro="author-note" suffix=", "/>
-                    <text variable="title" suffix=", "/>
-                    <text variable="container-title"/>
+                    <text variable="title" text-case="title" suffix=", "/>
+                    <text variable="container-title" text-case="title"/>
                     <date form="numeric" variable="issued" prefix=" v. "/>
                     <text variable="URL" prefix=", "/>
                 </else-if>
                 <else-if type="entry-encyclopedia">
                     <choose>
                         <if variable="container-title">
-                            <text variable="container-title" suffix=", "/>
+                            <text variable="container-title" text-case="title" suffix=", "/>
                         </if>
                         <else>
                             <text macro="author-commentary" suffix=", "/>
-                            <text variable="title" suffix=", " form="short"/>
+                            <text variable="title" text-case="title" suffix=", " form="short"/>
                         </else>
                     </choose>
                     <text macro="edition"/>
@@ -382,7 +382,7 @@ aber.
                 <else-if type="chapter">
                     <text macro="autor-editor-note" suffix=", in: "/>
                     <text macro="author-chapter" suffix=", "/>
-                    <text variable="container-title" suffix=", "/>
+                    <text variable="container-title" text-case="title" suffix=", "/>
                     <text macro="edition"/>
                     <text variable="page-first" prefix=", "/>
                 </else-if>
