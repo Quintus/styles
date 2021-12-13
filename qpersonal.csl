@@ -32,8 +32,15 @@
     </date>
     <terms>
         <term name="accessed">zuletzt aufgerufen am</term>
-        <!-- Override whatever the language default is -->
+        <!-- Locator adaptions for judicial writing.
+             Override whatever the language default is. The
+             'paragraph' locator is abused for articles, because
+             there is no article locator in CSL, only a section
+             locator. -->
         <term name="note" form="short">Rn.</term>
+        <term name="paragraph" form="symbol"><single>Art.</single><multiple>Artt.</multiple></term>
+        <term name="paragraph" form="short"><single>Art.</single><multiple>Artt.</multiple></term>
+        <term name="book" form="short">Buch</term><!-- The default "B." is ambigious, it could also refer to a section number -->
     </terms>
   </locale>
   <macro name="author">
