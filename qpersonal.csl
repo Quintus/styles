@@ -306,7 +306,7 @@ aber.
                         <else>
                             <text macro="authority-or-author" suffix=", "/>
                             <text variable="genre" suffix=" v. "/>
-                            <date form="numeric" variable="event-date" suffix=" &#8211; "/>
+                            <date form="numeric" variable="issued" suffix=" &#8211; "/>
                             <text variable="number" suffix=", "/>
                             <label variable="locator" form="symbol" suffix=" "/>
                             <text variable="locator"/>
