@@ -252,7 +252,7 @@ aber.
                                     <names variable="editor">
                                         <name form="short" delimiter="/" name-as-sort-order="all"/>
                                     </names>
-                                    <text term="editor" prefix=" (" suffix="), "/>
+                                    <text term="editor" form="short" prefix=" (" suffix="), "/>
                                     <text variable="container-title" text-case="title" form="long" suffix=", "/>
                                     <text macro="edition" suffix=", "/>
                                 </else-if>
