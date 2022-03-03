@@ -129,6 +129,14 @@
             </else>
         </choose>
     </macro>
+    <macro name="volume-long">
+        <choose>
+            <if variable="volume">
+                <label variable="volume" form="short" suffix=" "/>
+                <text variable="volume"/>
+            </if>
+        </choose>
+    </macro>
     <citation et-al-min="4" et-al-use-first="1">
         <layout delimiter="; " suffix=".">
             <choose>
@@ -244,6 +252,7 @@ aber.
                                     <!-- Commentary type #2 -->
                                     <text value=", in: "/>
                                     <text variable="container-title" form="long" suffix=", "/><!-- Short form is only used in the subsequent citations -->
+                                    <text macro="volume-long" suffix=", "/>
                                     <text macro="edition" suffix=", "/>
                                 </if>
                                 <else-if variable="editor">
@@ -254,11 +263,13 @@ aber.
                                     </names>
                                     <text term="editor" form="short" prefix=" (" suffix="), "/>
                                     <text variable="container-title" text-case="title" form="long" suffix=", "/>
+                                    <text macro="volume-long" suffix=", "/>
                                     <text macro="edition" suffix=", "/>
                                 </else-if>
                                 <else>
                                     <!-- Commentary type #3 -->
                                     <text variable="container-title" form="long" prefix=", "/>
+                                    <text macro="volume-long" suffix=", "/>
                                     <text macro="edition" suffix=", "/>
                                 </else>
                             </choose>
@@ -269,6 +280,7 @@ aber.
                                     <!-- Commentary type #2 -->
                                     <text value=", in: "/>
                                     <text variable="container-title-short"/>
+                                    <number variable="volume" form="roman" text-case="uppercase" prefix=" "/>
                                     <group delimiter=" " prefix=" (" suffix="), ">
                                         <text value="o. Fn."/>
                                         <text variable="first-reference-note-number"/>
@@ -280,6 +292,7 @@ aber.
                                     <names variable="editor">
                                         <name form="short" delimiter="/" name-as-sort-order="all"/>
                                     </names>
+                                    <number variable="volume" form="roman" text-case="uppercase" prefix=" "/>
                                     <group delimiter=" " prefix=" (" suffix="), ">
                                         <text value="o. Fn."/>
                                         <text variable="first-reference-note-number"/>
@@ -287,6 +300,7 @@ aber.
                                 </else-if>
                                 <else>
                                     <!-- Commentary type 3 -->
+                                    <number variable="volume" form="roman" text-case="uppercase" prefix=" "/>
                                     <group delimiter=" " prefix=" (" suffix="), ">
                                         <text value="o. Fn."/>
                                         <text variable="first-reference-note-number"/>
