@@ -111,6 +111,18 @@
         <text variable="page-first"/>
         <text variable="locator" prefix=" (" suffix=")"/>
     </macro>
+    <macro name="page-or-sym-locator">
+        <choose>
+            <!-- "S." as a locator is ommited. Many books however are instead cited by § plus margin number. The § has to appear. -->
+            <if locator="page">
+                <text variable="locator"/>
+            </if>
+            <else>
+                <label variable="locator" form="symbol"/>
+                <text variable="locator" prefix=" "/>
+            </else>
+        </choose>
+    </macro>
     <macro name="edition">
         <choose>
             <if match="any" is-numeric="edition">
@@ -173,16 +185,7 @@
                             <text macro="edition"/>
                         </else>
                     </choose>
-                    <choose>
-                        <!-- "S." as a locator is ommited. Many books however are instead cited by § plus margin number. The § has to appear. -->
-                        <if locator="page">
-                            <text variable="locator" prefix=", "/>
-                        </if>
-                        <else>
-                            <label variable="locator" form="symbol" prefix=", "/>
-                            <text variable="locator" prefix=" "/>
-                        </else>
-                    </choose>
+                    <text macro="page-or-sym-locator" prefix=", "/>
                 </else-if>
                 <!-- Chapter
                      Style: <author italic>, in: <book-author>, <title short>, [<edition>. Aufl.] <year>, <page> (<locator>)
@@ -204,18 +207,48 @@ aber.
                             <names variable="recipient">
                                 <name form="short" delimiter="/" name-as-sort-order="all"/>
                             </names>
+                            <text macro="edition" suffix=", "/><!-- Hinweis: Neuauflagen von Festschriften sind unüblich, aber die Jahresangabe muss rein. -->
                         </if>
                         <else>
                             <!-- Handbuch o.ä. (@incollection) -->
-                            <names variable="editor" suffix=", ">
-                                <name delimiter="/" name-as-sort-order="all" sort-separator=", " form="short"/>
-                                <label form="short" prefix=" (" suffix=")"/>
-                            </names>
-                            <text variable="container-title" text-case="title" form="short" suffix=", "/>
+                            <choose>
+                                <if position="first">
+                                    <names variable="editor" suffix=", ">
+                                        <name delimiter="/" name-as-sort-order="all" sort-separator=", " form="short"/>
+                                        <label form="short" prefix=" (" suffix=")"/>
+                                    </names>
+                                    <text variable="container-title" text-case="title" form="short" suffix=", "/>
+                                    <text macro="edition" suffix=", "/>
+                                </if>
+                                <else>
+                                    <names variable="editor" suffix=" ">
+                                        <name delimiter="/" name-as-sort-order="all" sort-separator=", " form="short"/>
+                                    </names>
+                                    <group delimiter=" " prefix=" (" suffix="), ">
+                                        <text value="o. Fn."/>
+                                        <text variable="first-reference-note-number"/>
+                                    </group>
+                                </else>
+                            </choose>
                         </else>
                     </choose>
-                    <text macro="edition"/>
-                    <text macro="firstpage-locator" prefix=", "/>
+                    <choose>
+                        <if variable="chapter-number">
+                            <!-- Buch ist nach Kapiteln nummeriert, zitiere nach Kapitel -->
+                            <choose>
+                                <if is-numeric="chapter-number">
+                                    <!-- Füge "Kap." hinzu, wenn es nicht in der Datenbank ist -->
+                                    <text term="chapter" form="short" suffix=" "/>
+                                </if>
+                            </choose>
+                            <text variable="chapter-number"/>
+                            <text macro="page-or-sym-locator" prefix=" "/>
+                        </if>
+                        <else>
+                            <!-- Buch ist eine bloße Aufsatzsammlung, zitiere nach Startseite -->
+                            <text macro="firstpage-locator" prefix=", "/>
+                        </else>
+                    </choose>
                 </else-if>
                 <else-if type="paper-conference">
                     <text macro="author-note" suffix=", in: "/>
@@ -292,6 +325,7 @@ aber.
                                     <names variable="editor">
                                         <name form="short" delimiter="/" name-as-sort-order="all"/>
                                     </names>
+                                    <!-- BUG in citeproc? volume is empty even when it should not be? -->
                                     <number variable="volume" form="roman" text-case="uppercase" prefix=" "/>
                                     <group delimiter=" " prefix=" (" suffix="), ">
                                         <text value="o. Fn."/>
