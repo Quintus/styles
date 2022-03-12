@@ -246,7 +246,7 @@ aber.
                         </if>
                         <else>
                             <!-- Buch ist eine bloße Aufsatzsammlung, zitiere nach Startseite -->
-                            <text macro="firstpage-locator" prefix=", "/>
+                            <text macro="firstpage-locator"/>
                         </else>
                     </choose>
                 </else-if>
