@@ -74,10 +74,10 @@
         <!-- Often, 'author' is used in place of 'authority'. Support both, giving priority to the more precise 'authority'. -->
         <choose>
             <if variable="authority">
-                <text variable="authority"/>
+                <text variable="authority" font-style="italic"/>
             </if>
             <else>
-                <names variable="author"/>
+                <names variable="author" font-style="italic"/>
             </else>
         </choose>
     </macro>
@@ -102,10 +102,17 @@
         </names>
     </macro>
     <macro name="journalname-year">
-        <group delimiter=" ">
-            <text variable="container-title" text-case="title" form="short"/>
-            <date date-parts="year" form="text" variable="issued"/>
-        </group>
+        <text variable="container-title" text-case="title" form="short" suffix=" "/>
+        <text variable="issue" suffix="/"/>
+        <choose>
+            <if variable="volume">
+                <text variable="volume" suffix=" "/>
+                <date date-parts="year" form="text" variable="issued" prefix="(" suffix=")"/>
+            </if>
+            <else>
+                <date date-parts="year" form="text" variable="issued"/>
+            </else>
+        </choose>
     </macro>
     <macro name="firstpage-locator">
         <text variable="page-first"/>
@@ -126,6 +133,7 @@
     <macro name="edition">
         <choose>
             <if match="any" is-numeric="edition">
+                <!-- FIXME: &#x00a0; muss nach der Auflagennummer stehen, aber NUR dort. Die GROUP muss entfallen -->
                 <group delimiter=" ">
                     <number vertical-align="baseline" suffix=" " variable="edition" form="ordinal"/>
                     <text term="edition" form="short" suffix="."/>
@@ -224,18 +232,42 @@ taucht der shorttitle momentan gar nicht auf. Nach Behebung des Bugs sollte er
 aber.
                 -->
                 <else-if type="chapter">
-                    <text macro="author-note" suffix=", in: "/>
                     <choose>
-                        <!-- Festschrift/Gedächtnisschrift (@inbook) -->
+                        <!-- Festschrift/Gedächtnisschrift (@incollection) -->
                         <if variable="recipient">
+                            <text macro="author-note" suffix=", in: "/>
                             <text variable="genre" suffix=" "/>
                             <names variable="recipient">
                                 <name form="short" delimiter="/" name-as-sort-order="all"/>
                             </names>
                             <text macro="edition" suffix=", "/><!-- Hinweis: Neuauflagen von Festschriften sind unüblich, aber die Jahresangabe muss rein. -->
                         </if>
+                        <else-if variable="container-author">
+                            <!-- Seltener Fall eines Autors, der sein eigenes Werk neu herausgibt.
+                                 Ein Sonderfall von @inbook.
+                                 "container-author" und "author" müssen in diesem Falle identisch sein,
+                                 aber das kann man in CSL leider nicht testen. Typischerweise wird
+                                 außerdem "note" mit einer Angabe wie "Nachdruck" o.ä. vorhanden sein.
+                                 "container-author" darf nicht mit "editor" verwechselt werden! -->
+                            <text macro="author-note"/>
+                            <choose>
+                                <if position="first">
+                                    <text variable="title" form="short" text-case="title" prefix=", " suffix=", in: "/>
+                                    <text value="ders." font-style="italic" suffix="■, "/><!-- CSL hat keinen Weg, das Geschlecht des Autors abzufragen, leider, also muss man das händisch nachbearbeiten. Daher wird hier eine Blockade eingefügt. -->
+                                    <text variable="container-title" text-case="title" form="short" suffix=", "/>
+                                    <text macro="edition" suffix=", "/>
+                                    <text value="note" suffix=", "/>
+                                </if>
+                                <else>
+                                    <group delimiter=" " prefix=" (" suffix="), ">
+                                        <text value="o. Fn."/>
+                                        <text variable="first-reference-note-number"/>
+                                    </group>
+                                </else>
+                            </choose>
                         <else>
-                            <!-- Handbuch o.ä. (@incollection) -->
+                            <!-- Handbuch o.ä. (@inbook) -->
+                            <text macro="author-note" suffix=", in: "/>
                             <choose>
                                 <if position="first">
                                     <names variable="editor" suffix=", ">
@@ -369,7 +401,7 @@ aber.
                         </else>
                     </choose>
                     <text variable="title" suffix=" "/>
-                    <label variable="locator" form="symbol" suffix=" "/>
+                    <label variable="locator" form="symbol" suffix="&#x00a0;"/>
                     <text variable="locator"/>
                 </else-if>
                 <!-- Legal case
