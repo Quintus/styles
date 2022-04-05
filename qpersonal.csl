@@ -195,6 +195,24 @@
                     </choose>
                     <text macro="page-or-sym-locator" prefix=", "/>
                 </else-if>
+                <else-if type="thesis">
+                    <text macro="autor-editor-note"/>
+                    <choose>
+                        <if match="none" position="first">
+                            <group delimiter=" " prefix=" (" suffix=")">
+                                <text value="o. Fn."/>
+                                <text variable="first-reference-note-number"/>
+                            </group>
+                        </if>
+                        <else>
+                            <text variable="title" form="short" text-case="title" prefix=", " suffix=", "/>
+                            <text variable="genre" suffix=" "/>
+                            <text variable="publisher-place"/>
+                            <text macro="edition"/>
+                        </else>
+                    </choose>
+                    <text macro="page-or-sym-locator" prefix=", "/>
+                </else-if>
                 <else-if type="report">
                     <choose>
                         <!-- Verwende die Namen der natürlichen Personen, wenn angegeben -->
