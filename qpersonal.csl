@@ -271,7 +271,7 @@ aber.
                             <choose>
                                 <if position="first">
                                     <text variable="title" form="short" text-case="title" prefix=", " suffix=", in: "/>
-                                    <text value="ders." font-style="italic" suffix="■, "/><!-- CSL hat keinen Weg, das Geschlecht des Autors abzufragen, leider, also muss man das händisch nachbearbeiten. Daher wird hier eine Blockade eingefügt. -->
+                                    <text value="ders." font-style="italic" suffix="&#x025A0;, "/><!-- CSL hat keinen Weg, das Geschlecht des Autors abzufragen, leider, also muss man das händisch nachbearbeiten. Daher wird hier eine Blockade eingefügt. -->
                                     <text variable="container-title" text-case="title" form="short" suffix=", "/>
                                     <text macro="edition" suffix=", "/>
                                     <text variable="note" suffix=", "/>
