@@ -265,6 +265,7 @@ aber.
                                     </group>
                                 </else>
                             </choose>
+                        </else-if>
                         <else>
                             <!-- Handbuch o.ä. (@inbook) -->
                             <text macro="author-note" suffix=", in: "/>
