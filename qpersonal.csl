@@ -256,7 +256,7 @@ aber.
                                     <text value="ders." font-style="italic" suffix="■, "/><!-- CSL hat keinen Weg, das Geschlecht des Autors abzufragen, leider, also muss man das händisch nachbearbeiten. Daher wird hier eine Blockade eingefügt. -->
                                     <text variable="container-title" text-case="title" form="short" suffix=", "/>
                                     <text macro="edition" suffix=", "/>
-                                    <text value="note" suffix=", "/>
+                                    <text variable="note" suffix=", "/>
                                 </if>
                                 <else>
                                     <group delimiter=" " prefix=" (" suffix="), ">
